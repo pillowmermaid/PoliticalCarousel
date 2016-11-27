@@ -17,14 +17,14 @@
 
 .btn__bar:after{
   content: "";
-display: block;
-position: absolute;
-z-index: 0;
-top: 10px;
-width: 100%;
-height: 1px;
-background: #DDD;
-margin-top: 5px;
+  display: block;
+  position: absolute;
+  z-index: 0;
+  top: 10px;
+  width: 100%;
+  height: 1px;
+  background: #DDD;
+  margin-top: 5px;
 }
 
 .btn__bar span, .btn {
@@ -102,7 +102,13 @@ margin-top: 5px;
   padding: 0;
 }
 
+.carousel__item.fadein {
+  opacity: 1;
+}
+
 .carousel__item {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
   display: inline-block;
   vertical-align: top;
   color: #eb252e;
@@ -137,9 +143,8 @@ margin-top: 5px;
 .carousel__item h2{
   text-transform: uppercase;
 
-  font-size: 12px;
+  font-size: 11px;
 }
-
 
 
 
@@ -148,6 +153,8 @@ margin-top: 5px;
 }
 .runner {
   width: 100%;
+  position: relative;
+  overflow: hidden;
   background-color: grey;
   padding: 5px;
   font-size: 12px;
@@ -156,29 +163,63 @@ margin-top: 5px;
 }
 .runner .name {
   display: inline-block;
+  position: relative;
   left: 0;
   width: 70%;
+  z-index: 2;
 }
 .votes {
   width: 30%;
+  position: relative;
   text-align: right;
   display: inline-block;
   font-style: italic;
   font-size: 12px;
   font-weight: normal;
+  z-index: 2;
 }
 .votes .count {
   font-size: 10px;
 }
+.runner .bg {
+  background-size: cover;
+  opacity: 0.45;
+  width: 100%;
+  top: 0px;
+  height: 100%;
+  z-index: 1;
+  position: absolute;
+  background-repeat: no-repeat;
+}
 .runner.lib {
   background-color: #D71920;
+}
+.runner.lib .bg {
+  background-image: url('/static/images/liberal.png');
+  background-position: 60px -35px;
+  background-size: 145px;
 }
 .runner.pc {
   background-color: #0C499C;
 }
+.runner.pc .bg{
+  background-image: url('/static/images/conservative.png');
+  background-position: 120px -10px;
+background-size: 40px;
+}
 .runner.ndp {
   background-color: #F37021;
 }
+.runner.ndp .bg{
+  background-image: url('/static/images/ndp.png');
+  background-position: 69px -9px;
+  background-size: 155px;
+}
 .runner.grn {
   background-color: #56A84F;
+}
+.runner.grn .bg{
+  background-position: 71px -7px;
+  background-size: 158px;
+  background-image: url('/static/images/green.png');
 }

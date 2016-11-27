@@ -5,8 +5,7 @@ var carouselContainer = $('.carousel__container'),
 		mobileBreak 			= 640,
 		slideWidth				= 0,
 		slideWidthMargin 	= 0,
- 		carouselOrder 		= [],
-		currentSlide			= 0;
+ 		carouselItems 		= [];
 
 function initCarousel(){
 	window.addEventListener('resize', function(){
@@ -40,16 +39,15 @@ function initCarousel(){
 				sortedResults = data[i].results.sort(function(a,b){return parseFloat(a.votes)-(b.votes)}).reverse();
 				for(var j = 0; j < sortedResults.length; j++){
 					runners.push(
-						"<div class='runner "+sortedResults[j].partyCode.toLowerCase()+"'><span class='name'>"+sortedResults[j].name+"</span><span class='votes'><span class='count'>"+sortedResults[j].votes+"</span> votes</span></div>"
+						"<div class='runner "+sortedResults[j].partyCode.toLowerCase()+"'><span class='name'>"+sortedResults[j].name+"</span><span class='votes'><span class='count'>"+sortedResults[j].votes+"</span> votes</span><div class='bg'></div></div>"
 					);
 				}
 				var itemClass = 'item__'+id;
 				var carouselItem = "<li class='carousel__item "+itemClass+"'><h2>"+name+"</h2><div class='results'>"+runners.join('')+"</div></li>";
 
-				carouselOrder.push({"id": id, "target":itemClass});
+				carouselItems.push({"id": id, "target":itemClass});
 				carousel.append(carouselItem);
 			}
-			currentslide = 0;
 			var cellCount;
 			if (window.innerWidth >= 1300){
 				slideWidthMargin = 20;
@@ -68,10 +66,24 @@ function initCarousel(){
 				cellCount = 1;
 			}
 			resizeCarousel(cellCount);
+			revealCarousel();
 			$('.carousel .carousel__item:first').before($('.carousel .carousel__item:last'));
-
 		}
 	});
+}
+
+function revealCarousel(){
+			$('.carousel__item').each(function(i){
+				var $slide = $(this);
+				setTimeout(function(){
+					$slide.animate({"opacity": 1}, 50);
+				}, 150*i);
+			});
+	}
+
+function addFade(i){
+	console.log('dading');
+		$('.'+carouselItems[i].target).addClass('fadein');
 }
 
 function resizeCarousel(numCells){
@@ -82,8 +94,7 @@ function resizeCarousel(numCells){
 		else {
 			carouselContainer.css({'width': '100%'});
 		}
-		carousel.css({'left': slideWidth*(-1)-slideWidthMargin+'px', 'width': slideWidth*carouselOrder.length});
-		console.log('resized to', window.innerWidth);
+		carousel.css({'left': slideWidth*(-1)-slideWidthMargin+'px', 'width': slideWidth*carouselItems.length});
 }
 
 function nextClick(){
