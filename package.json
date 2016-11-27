@@ -1,0 +1,14 @@
+{
+  "name": "political_carousel",
+  "version": "1.0.0",
+  "description": "A carousel which displays data from a json feed",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Amir Ashtiani",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}

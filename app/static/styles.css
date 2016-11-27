@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+  font-family: "Gotham", Arial, Helvetica, sans-serif;
+}
+
+.container {
+  width: 100%;
+
+}
+
+.btn__bar {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+.btn {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+}
+.btn--prev {
+  left: 0;
+}
+
+.btn--next {
+  right: 0;
+}
+
+.carousel__container {
+  width: 65%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.carousel {
+  width:200%;
+  position: relative;
+  left: -300px;
+  height: 300px;
+  overflow: hidden;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel__item {
+  display: inline-block;
+  vertical-align: top;
+  padding: 20px;
+  height: 300px;
+  width: 300px;
+  border: 1px solid black;
+  list-style: none;
+  margin: 0 5px;
+}
+
+.carousel__item.active, .carousel__item.adjacent {
+
+}
+.carousel__item.active {
+  border: 1px solid red;
+}
+@media screen and (max-width: 600px){
+  .carousel__item {
+    width: 100%;
+  }
+}
+
+
+.runner {
+  background-color: grey;
+  color: white;
+  font-weight: 600;
+}
+.runner.lib {
+  background-color: #D71920;
+}
+.runner.pc {
+  background-color: #0C499C;
+}
+.runner.ndp {
+  background-color: #F37021;
+}
+.runner.grn {
+  background-color: #56A84F;
+}
