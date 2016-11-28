@@ -94,7 +94,7 @@
   width:200%;
   position: relative;
   left: -300px;
-  height: 200px;
+  height: 225px;
   overflow: hidden;
   left: 0;
   top: 0;
@@ -114,36 +114,29 @@
   color: #777;
   font-weight: bold;
   padding: 10px 0;
-  height: 190px;
-  width: 300px;
+  width: 320px;
   list-style: none;
   margin: 0 10px;
-}
-@media screen and (max-width: 1024px){
-  .carousel__item {
-    width: 234px;
-    margin: 0 5px;
-  }
 }
 @media screen and (max-width: 767px){
   .carousel {
     margin: 50px 0 0;
   }
   .carousel__item {
-    width: 300px;
+    width: 305px;
     margin: 0 5px;
   }
-}
-  @media screen and (max-width: 320px){
-    .carousel__item {
-      width: 250px;
-      margin: 0 5px;
-    }
+
 }
 .carousel__item h2{
   text-transform: uppercase;
-
+  font-weight: bold;
   font-size: 12px;
+}
+.carousel__item h2 span{
+  font-size: 10px;
+  display: block;
+  margin-top: 4px;
 }
 @media screen and (max-width: 1024px){
   .carousel__item h2{
@@ -174,11 +167,11 @@
   display: inline-block;
   position: relative;
   left: 0;
-  width: 68%;
+  width: 66%;
   z-index: 2;
 }
 .votes {
-  width: 30%;
+  width: 32%;
   position: relative;
   text-align: right;
   display: inline-block;
@@ -186,6 +179,11 @@
   font-size: 12px;
   font-weight: normal;
   z-index: 2;
+}
+@media screen and (max-width: 767px){
+  .votes{
+      width: 33%;
+    }
 }
 .votes .count {
   font-size: 10px;

@@ -18,8 +18,8 @@ function initCarousel(){
 			setTimeout(resizeCarousel(3), 500);
 		}
 		else if (window.innerWidth <= 1024 && window.innerWidth >= 768) {
-			slideWidthMargin = 10;
-			setTimeout(resizeCarousel(3), 500);
+			slideWidthMargin = 20;
+			setTimeout(resizeCarousel(2), 500);
 		}
 		else {
 			slideWidthMargin = 10;
@@ -36,22 +36,24 @@ function initCarousel(){
 				var name = data[i].name;
 				var id = data[i].id;
 				var runners = [];
+
 				sortedResults = data[i].results.sort(function(a,b){return parseFloat(a.votes)-(b.votes)}).reverse();
+				var totalVotes = getTotalVotes(sortedResults);
 				for(var j = 0; j < sortedResults.length; j++){
 					if(j === 0){
 						runners.push(
-							"<div class='runner winner "+sortedResults[j].partyCode.toLowerCase()+"'><span class='name'>"+sortedResults[j].name+"</span><span class='votes'><span class='count'>"+sortedResults[j].votes+"</span> votes</span><div class='bg'></div></div>"
+							"<div class='runner winner "+sortedResults[j].partyCode.toLowerCase()+"'><span class='name'>"+sortedResults[j].name+"</span><span class='votes'><span class='count'>"+sortedResults[j].votes+"</span> votes | <b>"+getVotePercent(sortedResults[j].votes, totalVotes)+"%</b></span><div class='bg'></div></div>"
 						);
 					}
 					else {
 						runners.push(
-							"<div class='runner "+sortedResults[j].partyCode.toLowerCase()+"'><span class='name'>"+sortedResults[j].name+"</span><span class='votes'><span class='count'>"+sortedResults[j].votes+"</span> votes</span><span class='party-tag'></span><div class='bg'></div></div>"
+							"<div class='runner "+sortedResults[j].partyCode.toLowerCase()+"'><span class='name'>"+sortedResults[j].name+"</span><span class='votes'><span class='count'>"+sortedResults[j].votes+"</span> votes | "+getVotePercent(sortedResults[j].votes, totalVotes)+"%</span><span class='party-tag'></span><div class='bg'></div></div>"
 						);
 					}
 
 				}
 				var itemClass = 'item__'+id;
-				var carouselItem = "<li class='carousel__item "+itemClass+"'><h2>"+name+"</h2><div class='results'>"+runners.join('')+"</div></li>";
+				var carouselItem = "<li class='carousel__item "+itemClass+"'><h2>"+name+"<span>"+totalVotes+" total votes</span></h2><div class='results'>"+runners.join('')+"</div></li>";
 
 				carouselItems.push({"id": id, "target":itemClass});
 				carousel.append(carouselItem);
@@ -66,8 +68,8 @@ function initCarousel(){
 				cellCount = 3;
 			}
 			else if (window.innerWidth <= 1024 && window.innerWidth >= 768) {
-				slideWidthMargin = 10;
-				cellCount = 3;
+				slideWidthMargin = 20;
+				cellCount = 2;
 			}
 			else {
 				slideWidthMargin = 10;
@@ -78,6 +80,18 @@ function initCarousel(){
 			$('.carousel .carousel__item:first').before($('.carousel .carousel__item:last'));
 		}
 	});
+}
+
+function getTotalVotes(votes){
+		var tmp = 0;
+		for(var i = 0; i < votes.length; i++){
+			tmp += votes[i].votes;
+		}
+		return tmp;
+}
+function getVotePercent(runnerVotes, totalVotes){
+		var tmp = Math.round((runnerVotes/totalVotes)*100);
+		return tmp;
 }
 
 function revealCarousel(){
@@ -99,7 +113,7 @@ function resizeCarousel(numCells){
 			carouselContainer.css({'width': slideWidth*numCells+slideWidthMargin*numCells+'px'});
 		}
 		else {
-			carouselContainer.css({'width': '100%'});
+			carouselContainer.css({'width': '320px'});
 		}
 		carousel.css({'left': slideWidth*(-1)-slideWidthMargin+'px', 'width': slideWidth*carouselItems.length});
 }
