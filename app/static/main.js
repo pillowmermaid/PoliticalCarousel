@@ -38,9 +38,17 @@ function initCarousel(){
 				var runners = [];
 				sortedResults = data[i].results.sort(function(a,b){return parseFloat(a.votes)-(b.votes)}).reverse();
 				for(var j = 0; j < sortedResults.length; j++){
-					runners.push(
-						"<div class='runner "+sortedResults[j].partyCode.toLowerCase()+"'><span class='name'>"+sortedResults[j].name+"</span><span class='votes'><span class='count'>"+sortedResults[j].votes+"</span> votes</span><div class='bg'></div></div>"
-					);
+					if(j === 0){
+						runners.push(
+							"<div class='runner winner "+sortedResults[j].partyCode.toLowerCase()+"'><span class='name'>"+sortedResults[j].name+"</span><span class='votes'><span class='count'>"+sortedResults[j].votes+"</span> votes</span><div class='bg'></div></div>"
+						);
+					}
+					else {
+						runners.push(
+							"<div class='runner "+sortedResults[j].partyCode.toLowerCase()+"'><span class='name'>"+sortedResults[j].name+"</span><span class='votes'><span class='count'>"+sortedResults[j].votes+"</span> votes</span><span class='party-tag'></span><div class='bg'></div></div>"
+						);
+					}
+
 				}
 				var itemClass = 'item__'+id;
 				var carouselItem = "<li class='carousel__item "+itemClass+"'><h2>"+name+"</h2><div class='results'>"+runners.join('')+"</div></li>";
@@ -76,13 +84,12 @@ function revealCarousel(){
 			$('.carousel__item').each(function(i){
 				var $slide = $(this);
 				setTimeout(function(){
-					$slide.animate({"opacity": 1}, 50);
-				}, 150*i);
+					$slide.animate({"opacity": 1}, 150);
+				}, 100*i);
 			});
 	}
 
 function addFade(i){
-	console.log('dading');
 		$('.'+carouselItems[i].target).addClass('fadein');
 }
 

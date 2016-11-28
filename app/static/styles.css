@@ -9,7 +9,7 @@
 }
 
 .btn__bar {
-  width: 100%;
+  width: 98%;
   margin: 0 auto 10px;
   position: relative;
 }
@@ -94,7 +94,7 @@
   width:200%;
   position: relative;
   left: -300px;
-  height: 190px;
+  height: 200px;
   overflow: hidden;
   left: 0;
   top: 0;
@@ -111,7 +111,7 @@
   transition: opacity 1s ease-in-out;
   display: inline-block;
   vertical-align: top;
-  color: #eb252e;
+  color: #777;
   font-weight: bold;
   padding: 10px 0;
   height: 190px;
@@ -143,7 +143,12 @@
 .carousel__item h2{
   text-transform: uppercase;
 
-  font-size: 11px;
+  font-size: 12px;
+}
+@media screen and (max-width: 1024px){
+  .carousel__item h2{
+    font-size: 11px;
+  }
 }
 
 
@@ -153,19 +158,23 @@
 }
 .runner {
   width: 100%;
+  margin: 2px 0;
   position: relative;
   overflow: hidden;
-  background-color: grey;
-  padding: 5px;
+  background-color: #2c2c2c;
+  padding: 12px 10px;
   font-size: 12px;
   color: white;
   font-weight: 600;
+}
+.runner.winner {
+  padding: 12px 10px;
 }
 .runner .name {
   display: inline-block;
   position: relative;
   left: 0;
-  width: 70%;
+  width: 68%;
   z-index: 2;
 }
 .votes {
@@ -183,7 +192,7 @@
 }
 .runner .bg {
   background-size: cover;
-  opacity: 0.45;
+  opacity: 0.1;
   width: 100%;
   top: 0px;
   height: 100%;
@@ -191,35 +200,41 @@
   position: absolute;
   background-repeat: no-repeat;
 }
-.runner.lib {
-  background-color: #D71920;
+.party-tag {
+  height: 38px;
+  position: absolute;
+    width: 2%;
+    right: 0;
+    display: inline-block;
+    top: 0px;
+}
+.runner.winner .bg{
+  opacity: .18;
+}
+.runner.lib.winner, .runner.lib .party-tag {
+  background-color: #E11922;
 }
 .runner.lib .bg {
   background-image: url('/static/images/liberal.png');
-  background-position: 60px -35px;
-  background-size: 145px;
 }
-.runner.pc {
-  background-color: #0C499C;
+.runner.pc.winner, .runner.pc .party-tag {
+  background-color: #256EB0;
 }
 .runner.pc .bg{
   background-image: url('/static/images/conservative.png');
-  background-position: 120px -10px;
-background-size: 40px;
 }
-.runner.ndp {
+.runner.ndp.winner, .runner.ndp .party-tag {
   background-color: #F37021;
 }
 .runner.ndp .bg{
   background-image: url('/static/images/ndp.png');
-  background-position: 69px -9px;
-  background-size: 155px;
 }
-.runner.grn {
+.runner.grn.winner, .runner.grn .party-tag {
   background-color: #56A84F;
 }
 .runner.grn .bg{
-  background-position: 71px -7px;
-  background-size: 158px;
   background-image: url('/static/images/green.png');
+}
+.runner.ind.winner, .runner.ind .party-tag {
+  background-color: #B5B5B5;
 }
